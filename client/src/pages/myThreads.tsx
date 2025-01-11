@@ -5,29 +5,41 @@ import { BASE_URL } from "../App";
 import { getToken, getUserID } from "../components/LocalStorage";
 import ThreadBox from "../components/ThreadBox";
 import { Box, Paper, Stack, Typography } from "@mui/material";
+import { useNavigate, useParams } from "react-router-dom";
 
 const MyThreads = () => {
   const [threads, setthread] = useState<Thread[]>([]);
+  const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>();
   const userID = getUserID();
   const token = getToken();
 
   useEffect(() => {
-    const fetchThreads = async () => {
-      const response = await fetch(BASE_URL + "/threads/my-threads/" + userID, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message);
-      }
-      setthread(data);
-    };
-    fetchThreads();
-  }, []);
+    if (id == userID) {
+      const fetchThreads = async () => {
+        const response = await fetch(
+          BASE_URL + "/threads/my-threads/" + userID,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
+            },
+          }
+        );
+        const data = await response.json();
+        if (!response.ok) {
+          throw new Error(data.message);
+        }
+        setthread(data);
+      };
+      fetchThreads();
+    } else {
+      alert("unable to access");
+      navigate("/");
+    }
+  }, [id, userID, token]);
+
   return (
     <div className="threads">
       <Navbar />
@@ -38,7 +50,7 @@ const MyThreads = () => {
         {threads ? (
           <Stack spacing={3} justifyContent={"center"} alignItems={"center"}>
             {threads.map((thread) => (
-              <ThreadBox thread={thread} key={thread.id} />
+              <ThreadBox thread={thread} key={thread.id} editable={true} />
             ))}
           </Stack>
         ) : (

@@ -1,0 +1,56 @@
+import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import { Thread } from "./home";
+import { BASE_URL } from "../App";
+import { getToken, getUserID } from "../components/LocalStorage";
+import ThreadBox from "../components/ThreadBox";
+import { Box, Paper, Stack, Typography } from "@mui/material";
+
+const MyThreads = () => {
+  const [threads, setthread] = useState<Thread[]>([]);
+  const userID = getUserID();
+  const token = getToken();
+
+  useEffect(() => {
+    const fetchThreads = async () => {
+      const response = await fetch(BASE_URL + "/threads/my-threads/" + userID, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message);
+      }
+      setthread(data);
+    };
+    fetchThreads();
+  }, []);
+  return (
+    <div className="threads">
+      <Navbar />
+      <Paper elevation={0} sx={{ width: "100%", mt: 12 }}>
+        <Box justifySelf={"center"}>
+          <Typography variant="h4">My Post</Typography>
+        </Box>
+        {threads ? (
+          <Stack spacing={3} justifyContent={"center"} alignItems={"center"}>
+            {threads.map((thread) => (
+              <ThreadBox thread={thread} key={thread.id} />
+            ))}
+          </Stack>
+        ) : (
+          <Box justifySelf={"center"} height={300}>
+            <Typography variant="body1" fontSize={20} sx={{ pt: 3 }}>
+              No Post Yet
+            </Typography>
+          </Box>
+        )}
+      </Paper>
+    </div>
+  );
+};
+
+export default MyThreads;

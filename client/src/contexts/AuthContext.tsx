@@ -6,6 +6,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
+import { BASE_URL } from "../App";
 
 interface AuthContextType {
   isAuthenticated: boolean;
@@ -23,16 +24,28 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const token = localStorage.getItem("token");
     const userData = localStorage.getItem("user");
+    const loginAt = localStorage.getItem("login_at");
 
-    if (token && userData) {
-      setIsAuthenticated(true);
-      setUser(JSON.parse(userData));
+    const TIME_LIMIT = 60 * 60 * 1000; //one hour
+
+    if (token && userData && loginAt) {
+      const currentTime = new Date();
+      const loginTime = new Date(loginAt);
+      const timeDiff = currentTime.getTime() - loginTime.getTime();
+      if (timeDiff < TIME_LIMIT) {
+        setIsAuthenticated(true);
+        setUser(JSON.parse(userData));
+      } else {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        localStorage.removeItem("login_at");
+      }
     }
   }, []);
 
   const login = async (username: string) => {
     try {
-      const response = await fetch("http://localhost:3000/api/auth/login", {
+      const response = await fetch(BASE_URL + "/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username }),
@@ -42,6 +55,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (data.token) {
         localStorage.setItem("token", data.token);
         localStorage.setItem("user", JSON.stringify(data.user));
+        localStorage.setItem("login_at", data.login_at);
         setIsAuthenticated(true);
         setUser(data.user);
       }

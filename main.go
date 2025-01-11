@@ -212,8 +212,9 @@ func login(c *fiber.Ctx) error {
 	token := generateToken(strconv.Itoa(user.ID))
 
 	return c.JSON(fiber.Map{
-		"token": token,
-		"user":  user,
+		"token":    token,
+		"user":     user,
+		"login_at": time.Now(),
 	})
 }
 

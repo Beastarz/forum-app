@@ -11,9 +11,9 @@ function LoginForm() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(location.state?.from || "/");
+      navigate(location.state.from || "/");
     }
-  }, [isAuthenticated, navigate, location]);
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();

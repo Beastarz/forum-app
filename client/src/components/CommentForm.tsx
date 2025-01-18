@@ -1,6 +1,6 @@
 import { Button, TextField } from "@mui/material";
 import React, { FormEvent } from "react";
-import { getToken, getUserID, getUsername } from "./LocalStorage";
+import { getToken, getUserID, getUsername } from "../contexts/LocalStorage";
 import { BASE_URL } from "../App";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -46,6 +46,7 @@ const CommentForm = () => {
           placeholder="Add comment"
           onChange={(e) => setComment(e.target.value)}
           required
+          multiline
           size="small"
           sx={{ width: "80%", m: 1 }}
         />

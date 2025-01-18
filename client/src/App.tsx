@@ -2,14 +2,13 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./pages/home";
 import Thread from "./pages/thread";
 import NewThread from "./pages/newThread";
-import { AuthProvider } from "./contexts/AuthContext";
-import { ProtectedRoute } from "./components/LoginForm";
+import { AuthProvider, ProtectedRoute } from "./contexts/AuthContext";
 import Login from "./pages/login";
 import Register from "./pages/register";
 import MyThreads from "./pages/myThreads";
 import SearchResults from "./pages/searchResults";
 
-export const BASE_URL = "http://localhost:3000/api";
+export const BASE_URL = "https://forum-app-s4ee.onrender.com/api";
 
 function App() {
   return (

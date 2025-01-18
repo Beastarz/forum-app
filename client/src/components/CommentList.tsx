@@ -1,6 +1,6 @@
 import CommentBox from "./CommentBox";
 import { Comment } from "../pages/thread";
-import DateTimeComponent from "./DateTimeComponent";
+import DateTimeComponent from "../contexts/DateTimeComponent";
 
 const CommentList = ({ comments }: { comments: Comment[] }) => {
   if (!comments) {

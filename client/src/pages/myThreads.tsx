@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Thread } from "./home";
 import { BASE_URL } from "../App";
-import { getToken, getUserID } from "../components/LocalStorage";
+import { getToken, getUserID } from "../contexts/LocalStorage";
 import ThreadBox from "../components/ThreadBox";
 import { Box, Paper, Stack, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
@@ -17,21 +17,25 @@ const MyThreads = () => {
   useEffect(() => {
     if (id == userID) {
       const fetchThreads = async () => {
-        const response = await fetch(
-          BASE_URL + "/threads/my-threads/" + userID,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
+        try {
+          const response = await fetch(
+            BASE_URL + "/threads/my-threads/" + userID,
+            {
+              method: "GET",
+              headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+          const data = await response.json();
+          if (!response.ok) {
+            throw new Error(data.message);
           }
-        );
-        const data = await response.json();
-        if (!response.ok) {
-          throw new Error(data.message);
+          setthread(data);
+        } catch (error) {
+          console.log("Error fetching threads");
         }
-        setthread(data);
       };
       fetchThreads();
     } else {

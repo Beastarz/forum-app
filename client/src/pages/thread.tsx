@@ -8,10 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { getToken } from "../components/LocalStorage";
+import { getToken } from "../contexts/LocalStorage";
 import CommentList from "../components/CommentList";
 import CommentForm from "../components/CommentForm";
-import DateTimeComponent from "../components/DateTimeComponent";
+import DateTimeComponent from "../contexts/DateTimeComponent";
 import { BASE_URL } from "../App";
 
 export type Comment = {

@@ -6,11 +6,11 @@ import {
   CardHeader,
   Typography,
 } from "@mui/material";
-import DateTimeComponent from "./DateTimeComponent";
+import DateTimeComponent from "../contexts/DateTimeComponent";
 import { Thread } from "../pages/home";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../App";
-import { getToken } from "./LocalStorage";
+import { getToken } from "../contexts/LocalStorage";
 
 interface ThreadBoxProp {
   thread: Thread;

@@ -60,20 +60,19 @@ type ThreadView struct {
 var db *sql.DB
 
 func main() {
-	fmt.Print("hello world")
-
-	connStr := "postgresql://postgres:Trb2019.@localhost:8080/postgres?sslmode=disable"
 	var err error
+	err = godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
+	connStr := "postgresql://postgres:" + os.Getenv("DB_PASSWORD") + "@localhost:8080/postgres?sslmode=disable"
+
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer db.Close()
-
-	err = godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
 
 	app := fiber.New()
 

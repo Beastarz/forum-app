@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import { Thread } from "./home";
 import { BASE_URL } from "../App";
-import { getToken } from "../components/LocalStorage";
+import { getToken } from "../contexts/LocalStorage";
 import ThreadBox from "../components/ThreadBox";
 import { Box, CircularProgress, Paper, Stack, Typography } from "@mui/material";
 import { useSearchParams } from "react-router-dom";

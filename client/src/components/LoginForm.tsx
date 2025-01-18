@@ -1,5 +1,5 @@
-import { useState, FormEvent, ReactNode, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState, FormEvent, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 import { Box, Button, Card, Paper, TextField, Typography } from "@mui/material";
 
@@ -7,11 +7,10 @@ function LoginForm() {
   const { login, isAuthenticated } = useAuth();
   const [username, setUsername] = useState("");
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(location.state.from || "/");
+      navigate("/");
     }
   }, [isAuthenticated, navigate]);
 
@@ -56,18 +55,4 @@ function LoginForm() {
   );
 }
 
-// Protected Route Component
-export function ProtectedRoute({ children }: { children: ReactNode }) {
-  const { isAuthenticated } = useAuth();
-  const navigate = useNavigate();
-  const location = useLocation();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      navigate("/login", { state: { from: location.pathname } });
-    }
-  }, [isAuthenticated, navigate, location]);
-
-  return isAuthenticated ? children : null;
-}
 export default LoginForm;

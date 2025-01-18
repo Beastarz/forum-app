@@ -9,7 +9,7 @@ import {
 import { FormEvent, useEffect, useState } from "react";
 import { BASE_URL } from "../App";
 import { useNavigate } from "react-router-dom";
-import { getUsername, getToken } from "./LocalStorage";
+import { getUsername, getToken } from "../contexts/LocalStorage";
 import { Tag } from "./Navbar";
 
 const NewThreadForm = () => {
@@ -23,14 +23,18 @@ const NewThreadForm = () => {
 
   useEffect(() => {
     const fetchTags = async () => {
-      const response = await fetch(BASE_URL + "/tags", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = await response.json();
-      settags(data);
+      try {
+        const response = await fetch(BASE_URL + "/tags", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = await response.json();
+        settags(data);
+      } catch (error) {
+        console.error(error);
+      }
     };
     fetchTags();
   }, []);

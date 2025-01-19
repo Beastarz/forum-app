@@ -4,11 +4,12 @@ import { Thread } from "./home";
 import { BASE_URL } from "../App";
 import { getToken, getUserID } from "../contexts/LocalStorage";
 import ThreadBox from "../components/ThreadBox";
-import { Box, Paper, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Paper, Stack, Typography } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 
 const MyThreads = () => {
   const [threads, setthread] = useState<Thread[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const userID = getUserID();
@@ -17,6 +18,7 @@ const MyThreads = () => {
   useEffect(() => {
     if (id == userID) {
       const fetchThreads = async () => {
+        setIsLoading(true);
         try {
           const response = await fetch(
             BASE_URL + "/threads/my-threads/" + userID,
@@ -35,6 +37,8 @@ const MyThreads = () => {
           setthread(data);
         } catch (error) {
           console.log("Error fetching threads");
+        } finally {
+          setIsLoading(false);
         }
       };
       fetchThreads();
@@ -51,7 +55,11 @@ const MyThreads = () => {
         <Box justifySelf={"center"}>
           <Typography variant="h4">My Post</Typography>
         </Box>
-        {threads ? (
+        {isLoading ? (
+          <Box display="flex" justifyContent="center" p={4}>
+            <CircularProgress />
+          </Box>
+        ) : threads ? (
           <Stack spacing={3} justifyContent={"center"} alignItems={"center"}>
             {threads.map((thread) => (
               <ThreadBox thread={thread} key={thread.id} editable={true} />

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
-import { Box, Paper, Stack, Typography } from "@mui/material";
+import { Box, CircularProgress, Paper, Stack, Typography } from "@mui/material";
 import ThreadBox from "../components/ThreadBox";
 import { BASE_URL } from "../App";
 
@@ -15,10 +15,13 @@ export type Thread = {
 
 const Home = () => {
   const [threads, setthread] = useState<Thread[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
   const token = localStorage.getItem("token");
+
   useEffect(() => {
     const FetchThreads = async () => {
       try {
+        setIsLoading(true);
         const response = await fetch(BASE_URL + "/threads", {
           method: "GET",
           headers: {
@@ -30,6 +33,8 @@ const Home = () => {
         setthread(data);
       } catch (error) {
         console.error(error);
+      } finally {
+        setIsLoading(false);
       }
     };
     FetchThreads();
@@ -39,7 +44,11 @@ const Home = () => {
     <div>
       <Navbar />
       <Paper elevation={0} sx={{ width: "100%", mt: 12, p: 2 }}>
-        {threads ? (
+        {isLoading ? (
+          <Box display="flex" justifyContent="center" p={4}>
+            <CircularProgress />
+          </Box>
+        ) : threads ? (
           <Stack spacing={3} justifyContent={"center"} alignItems={"center"}>
             {threads.map((thread) => (
               <ThreadBox thread={thread} key={thread.id} />

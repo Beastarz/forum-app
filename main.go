@@ -66,7 +66,14 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	connStr := "postgresql://forum_app_lavl_user:ww2WtH7tznIkujrwHe1YYQi1fABUZBFl@dpg-cu67ubd2ng1s73bn1050-a/forum_app_lavl"
+	var connStr string
+	if os.Getenv("RENDER_EXTERNAL_URL") != "" {
+		// Render DATABASE_URL
+		connStr = os.Getenv("DATABASE_URL")
+	} else {
+		// Local development
+		connStr = "postgresql://postgres:" + os.Getenv("DB_PASSWORD") + "@localhost:8080/postgres?sslmode=disable"
+	}
 
 	db, err = sql.Open("postgres", connStr)
 	if err != nil {

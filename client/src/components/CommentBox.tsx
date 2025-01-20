@@ -1,5 +1,5 @@
 import { Card, CardContent, CardHeader, Typography } from "@mui/material";
-import DateTimeComponent from "../contexts/DateTimeComponent";
+import DateTimeComponent from "../utills/DateTimeComponent";
 
 interface CommentBox {
   author: string;

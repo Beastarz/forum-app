@@ -8,10 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { getToken } from "../contexts/LocalStorage";
+import { getToken } from "../utills/LocalStorage";
 import CommentList from "../components/CommentList";
 import CommentForm from "../components/CommentForm";
-import DateTimeComponent from "../contexts/DateTimeComponent";
+import DateTimeComponent from "../utills/DateTimeComponent";
 import { BASE_URL } from "../App";
 
 export type Comment = {
@@ -62,6 +62,7 @@ const Thread = () => {
     };
     FetchComments();
   }, []);
+
   return (
     <div>
       <Navbar />

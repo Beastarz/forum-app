@@ -7,6 +7,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import MyThreads from "./pages/myThreads";
 import SearchResults from "./pages/searchResults";
+import EditThread from "./pages/editThread";
 
 export const BASE_URL = "https://forum-app-s4ee.onrender.com/api";
 export const APP_NAME = "YAPPERS";
@@ -56,6 +57,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <SearchResults />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/edit-thread/:id"
+              element={
+                <ProtectedRoute>
+                  <EditThread />
                 </ProtectedRoute>
               }
             />

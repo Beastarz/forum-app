@@ -1,4 +1,5 @@
 import {
+  Box,
   Button,
   Card,
   CardActions,
@@ -6,11 +7,11 @@ import {
   CardHeader,
   Typography,
 } from "@mui/material";
-import DateTimeComponent from "../contexts/DateTimeComponent";
+import DateTimeComponent from "../utills/DateTimeComponent";
 import { Thread } from "../pages/home";
 import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../App";
-import { getToken } from "../contexts/LocalStorage";
+import { getToken } from "../utills/LocalStorage";
 
 interface ThreadBoxProp {
   thread: Thread;
@@ -71,9 +72,17 @@ const ThreadBox = ({ thread, editable = false }: ThreadBoxProp) => {
           Comments
         </Button>
         {editable ? (
-          <Button size="small" onClick={handleDelete}>
-            Delete
-          </Button>
+          <Box>
+            <Button size="small" onClick={handleDelete}>
+              Delete
+            </Button>
+            <Button
+              size="small"
+              onClick={() => navigate("/edit-thread/" + thread.id)}
+            >
+              Edit
+            </Button>
+          </Box>
         ) : (
           <></>
         )}

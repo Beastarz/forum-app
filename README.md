@@ -9,7 +9,7 @@ This repository contains the source code for a forum application Yapppers101 wit
 2. Frontend with React + TypeScript, with MUI for UI design
 3. PostgreSQL database.
 
-# Deployment
+### Deployment
 1. The backend of application is deployed on Render, with Render's PostgreSQL database which will expire on 18 Feb 2025.
 2. The frontend is deployed on Netlify, link: https://yappers101.netlify.app
 

@@ -9,7 +9,7 @@ import { getToken, getUserID } from "../utills/LocalStorage";
 import React from "react";
 import { Menu, MenuItem } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../App";
+import { APP_NAME, BASE_URL } from "../App";
 
 export type Tag = {
   id: number;
@@ -63,7 +63,7 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
           >
-            Forum
+            {APP_NAME}
           </Typography>
 
           <Box display={"flex"} flexGrow={0}>

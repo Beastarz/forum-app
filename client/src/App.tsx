@@ -10,7 +10,7 @@ import SearchResults from "./pages/searchResults";
 import EditThread from "./pages/editThread";
 
 export const BASE_URL = "https://forum-app-s4ee.onrender.com/api";
-export const APP_NAME = "YAPPERS";
+export const APP_NAME = "Yappers101";
 
 function App() {
   return (

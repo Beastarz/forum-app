@@ -49,3 +49,6 @@ Thumbs.db
 *.old
 *.orig
 *.rej
+
+# Local Netlify folder
+.netlify

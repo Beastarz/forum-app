@@ -15,7 +15,7 @@ This repository contains the source code for a forum application Yapppers101 wit
 
 ## Installation
 
-To install and run the project locally, follow these steps:
+To install and run the project's frontend locally, follow these steps:
 
 1. Clone the repository:
    ```bash

@@ -31,13 +31,13 @@ func main() {
 	//set up CORS
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "https://yappers101.netlify.app/",
+		AllowOrigins: "https://yappers101.netlify.app/, http://localhost:5173",
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 		AllowMethods: "GET, POST, PUT, DELETE",
 	}))
 
 	//set up routes
-	app.Post("/api/auth/register", handlers.GetThreads)
+	app.Post("/api/auth/register", handlers.Register)
 	app.Post("/api/auth/login", handlers.Login)
 
 	api := app.Group("/api/", middleware.AuthMiddleware)

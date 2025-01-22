@@ -66,7 +66,7 @@ func Login(c *fiber.Ctx) error {
 	err := database.Db.QueryRow(
 		"SELECT *  FROM users WHERE username = $1",
 		input.Username,
-	).Scan(&user.ID, &user.CreatedAt, &user.Username)
+	).Scan(&user.ID, &user.Username, &user.CreatedAt)
 
 	if err == sql.ErrNoRows {
 		return fiber.NewError(fiber.StatusUnauthorized, "Invalid credentials")

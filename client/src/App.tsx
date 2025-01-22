@@ -9,7 +9,7 @@ import MyThreads from "./pages/myThreads";
 import SearchResults from "./pages/searchResults";
 import EditThread from "./pages/editThread";
 
-export const BASE_URL = "https://forum-app-s4ee.onrender.com/api";
+export const BASE_URL = "https://forum-app-s4ee.onrender.com/api"; //"http://localhost:3000/api";
 export const APP_NAME = "Yappers101";
 
 function App() {

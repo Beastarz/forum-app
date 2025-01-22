@@ -23,9 +23,9 @@ func GetThreads(c *fiber.Ctx) error {
 			&thread.ID,
 			&thread.Title,
 			&thread.Content,
-			&thread.CreatedAt,
 			&thread.AuthorID,
 			&thread.Author,
+			&thread.CreatedAt,
 			&thread.Tag,
 		)
 		if err != nil {
@@ -145,8 +145,15 @@ func GetThreadView(c *fiber.Ctx) error {
 	defer rows.Close()
 
 	for rows.Next() {
-		err = rows.Scan(&threadView.ID, &threadView.Title, &threadView.Content,
-			&threadView.CreatedAt, &threadView.AuthorID, &threadView.Author, &threadView.Tag)
+		err = rows.Scan(
+			&threadView.ID,
+			&threadView.Title,
+			&threadView.Content,
+			&threadView.AuthorID,
+			&threadView.Author,
+			&threadView.CreatedAt,
+			&threadView.Tag,
+		)
 		if err != nil {
 			return err
 		}
@@ -166,8 +173,8 @@ func GetThreadView(c *fiber.Ctx) error {
 			&comment.ThreadID,
 			&comment.Content,
 			&comment.AuthorID,
-			&comment.CreatedAt,
 			&comment.Author,
+			&comment.CreatedAt,
 		)
 		if err != nil {
 			return err
@@ -196,9 +203,9 @@ func GetMyThreads(c *fiber.Ctx) error {
 			&thread.ID,
 			&thread.Title,
 			&thread.Content,
-			&thread.CreatedAt,
 			&thread.AuthorID,
 			&thread.Author,
+			&thread.CreatedAt,
 			&thread.Tag,
 		)
 		if err != nil {
@@ -222,9 +229,9 @@ func HandleTagSearch(c *fiber.Ctx) error {
 			&thread.ID,
 			&thread.Title,
 			&thread.Content,
-			&thread.CreatedAt,
 			&thread.AuthorID,
 			&thread.Author,
+			&thread.CreatedAt,
 			&thread.Tag,
 		)
 		if err != nil {
@@ -273,8 +280,8 @@ func GetComments(c *fiber.Ctx) error {
 			&comment.ThreadID,
 			&comment.Content,
 			&comment.AuthorID,
-			&comment.CreatedAt,
 			&comment.Author,
+			&comment.CreatedAt,
 		)
 		if err != nil {
 			return err

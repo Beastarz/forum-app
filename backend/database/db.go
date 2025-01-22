@@ -94,7 +94,7 @@ func setupDatabase(db *sql.DB) error {
 
 		INSERT INTO threads (title, content, author_id, author, tag) VALUES
 		('Welcome to the Forum', 'This is our first thread!', 1, 'amos_lee', 'others'),
-		('Finding my way to COM', 'How do I go to COM3 MPH?', 2, 'jane_tan', 'School'),
+		('Finding my way to COM', 'How do I go to COM3 MPH?', 2, 'jane_tan', 'school'),
 		('CS life', 'What''s everyone working in CS2040S?', 3, 'bob_choi', 'studies');
 
 		INSERT INTO comments (thread_id, content, author_id, author) VALUES

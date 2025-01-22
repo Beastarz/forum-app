@@ -20,7 +20,7 @@ const CommentBox: React.FC<CommentBox> = ({ author, content, created_at }) => {
     >
       <CardHeader
         title={
-          <Typography fontSize={"110%"} fontWeight={"bold"}>
+          <Typography fontSize={"100%"} fontWeight={"bold"}>
             {author}
           </Typography>
         }
@@ -31,12 +31,12 @@ const CommentBox: React.FC<CommentBox> = ({ author, content, created_at }) => {
         }
         sx={{ p: 1 }}
       />
-      <CardContent sx={{ p: 1, mb: -2 }}>
+      <CardContent sx={{ p: 1, mb: -2, mt: -1 }}>
         <Typography
           variant="body1"
           color="text.primary"
           component={"span"}
-          fontSize={"110%"}
+          fontSize={"115%"}
         >
           {content}
         </Typography>

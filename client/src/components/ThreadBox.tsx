@@ -63,7 +63,7 @@ const ThreadBox = ({ thread, editable = false }: ThreadBoxProp) => {
         >
           {"#" + thread.tag + ": " + thread.title}
         </Typography>
-        <Typography variant="body1" color="text.primary" fontSize={"105%"}>
+        <Typography variant="body1" color="text.primary" fontSize={"120%"}>
           {thread.content}
         </Typography>
       </CardContent>

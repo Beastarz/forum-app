@@ -112,7 +112,7 @@ const Thread = () => {
               <Typography
                 variant="body1"
                 color="text.primary"
-                fontSize={"110%"}
+                fontSize={"120%"}
               >
                 {threadview.content}
               </Typography>

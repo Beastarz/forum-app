@@ -1,4 +1,4 @@
-# Forum App Yappers101
+# Yappers101 Forum App
 
 A forum application built with TypeScript and Go with PostgreSQL database.
 

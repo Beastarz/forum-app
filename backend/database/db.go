@@ -2,7 +2,6 @@ package database
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"os"
 )
@@ -15,11 +14,9 @@ func Init() {
 	if os.Getenv("RENDER_EXTERNAL_URL") != "" {
 		// Render DATABASE_URL
 		connStr = os.Getenv("DATABASE_URL")
-		fmt.Println("connect to render database")
 	} else {
-		// Local development
+		// Local development: change to your local PostgreSQL database
 		connStr = "postgresql://postgres:" + os.Getenv("DB_PASSWORD") + "@localhost:8080/postgres?sslmode=disable"
-		fmt.Println("connect to local database")
 	}
 	var err error
 	Db, err = sql.Open("postgres", connStr)
@@ -95,12 +92,12 @@ func setupDatabase(db *sql.DB) error {
 		INSERT INTO threads (title, content, author_id, author, tag) VALUES
 		('Welcome to the Forum', 'This is our first thread!', 1, 'amos_lee', 'others'),
 		('Finding my way to COM', 'How do I go to COM3 MPH?', 2, 'jane_tan', 'school'),
-		('CS life', 'What''s everyone working in CS2040S?', 3, 'bob_choi', 'studies');
+		('CS life', 'How''s everyone doing in CS2040S?', 3, 'bob_choi', 'studies');
 
 		INSERT INTO comments (thread_id, content, author_id, author) VALUES
 		(1, 'Great to be here!', 2, 'jane_tan'),
 		(1, 'Thanks for having us', 3, 'bob_choi'),
-		(2, 'Have you checked the NUSMod?', 1, 'amos_lee');`
+		(2, 'Have you checked NUSMod?', 1, 'amos_lee');`
 
 		_, err = db.Exec(setupQuery)
 		if err != nil {

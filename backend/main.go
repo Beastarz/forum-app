@@ -31,7 +31,7 @@ func main() {
 	//set up CORS
 	app.Use(logger.New())
 	app.Use(cors.New(cors.Config{
-		AllowOrigins: "https://yappers101.netlify.app/, http://localhost:5173",
+		AllowOrigins: "https://yappers101.netlify.app/, http://localhost:5173, http://localhost:5174",
 		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
 		AllowMethods: "GET, POST, PUT, DELETE",
 	}))

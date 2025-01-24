@@ -146,7 +146,7 @@ export default function Navbar() {
                   navigate("/my-threads/" + getUserID());
                 }}
               >
-                My Post
+                My Threads
               </MenuItem>
               <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>

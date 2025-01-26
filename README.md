@@ -26,15 +26,16 @@ To install and run the this repository locally, follow these steps:
    cd  backend
    ```
 4. Navigate to `backend` > `database` > `db.go` and change `connstr` to your database url.
-5. Check the imports and dependencies by running this command:
+5. Create a `.env` file, enter `JWT_SECRET = "secretkey"` and save, note that `secret` can be any string.
+6. Check the imports and dependencies by running this command:
    ```bash
    go mod tidy
    ```
-6. Run the backend by entering this command:
+7. Run the backend by entering this command:
    ```bash
    go run main.go
    ```
-7. Head to set up frontend to view datas fetch from the database
+8. Head to set up frontend to view datas fetch from the database
 
 ### Running the frontend
 
